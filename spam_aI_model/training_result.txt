@@ -1,0 +1,44 @@
+
+Training time for fold 1: 37.949419021606445 sec
+> Validation score for fold 1: 
+Score for validation dataset: loss - 0.07765787839889526; acc - 97.40777611732483%
+Score for test set: loss of 0.07756922394037247; acc of 97.31183052062988%
+
+--------------------------------------------------------------------------------------
+
+Training time for fold 2: 76.54686141014099 sec
+> Validation score for fold 2: 
+Score for validation dataset: loss - 0.019024834036827087; acc - 99.80059862136841%
+Score for test set: loss of 0.1092618778347969; acc of 98.0286717414856%
+
+--------------------------------------------------------------------------------------
+
+Training time for fold 3: 101.86786484718323 sec
+> Validation score for fold 3: 
+Score for validation dataset: loss - 6.0870381275890395e-05; acc - 100.0%
+Score for test set: loss of 0.11160773783922195; acc of 97.49103784561157%
+
+--------------------------------------------------------------------------------------
+
+Training time for fold 4: 128.9998607635498 sec
+> Validation score for fold 4: 
+Score for validation dataset: loss - 3.553940405254252e-05; acc - 100.0%
+Score for test set: loss of 0.1282002031803131; acc of 98.38709831237793%
+
+--------------------------------------------------------------------------------------
+
+Training time for fold 5: 153.94975233078003 sec
+> Validation score for fold 5: 
+Score for validation dataset: loss - 2.665242755028885e-05; acc - 100.0%
+Score for test set: loss of 0.1282607614994049; acc of 97.8494644165039%
+
+--------------------------------------------------------------------------------------
+
+Average valid scores for all folds:
+> Accuracy: 99.44167494773865% (+- 1.0198775659654944)
+> Loss: 0.019361154929720216 (+- 0.030061352148856253)
+
+
+Average test scores for all folds:
+> Accuracy: 97.81362056732178% (+- 0.3826908351171046)
+> Loss: 0.11097996085882186 (+- 0.01851910403361272)
