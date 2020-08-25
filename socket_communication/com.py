@@ -19,14 +19,17 @@ def binder(client_socket, addr):
             result = is_spam(msg)       # if result is True: spam, else: ham
             if result is True:
                 print("Spam")
+                result = str(1)
             elif result is False:
                 print("Ham")
-            msg = "echo: " + msg
-            data = msg.encode()
-            length = len(data)
+                result = str(0)
+            # msg = "echo: " + msg
+            # data = msg.encode()
+            length = len(result)
+            print("Sending length.to_bytes")
             client_socket.sendall(length.to_bytes(4, byteorder="little"))
-
-            client_socket.sendall(data)
+            print("Sending result.encode()")
+            client_socket.sendall(result.encode())
             client_socket.close()
 
     except Exception as e:
