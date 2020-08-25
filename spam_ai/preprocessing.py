@@ -42,4 +42,3 @@ elif user_input == 4:
     for data in data_list:
         print(data)
         print(type(data))
-
