@@ -6,12 +6,8 @@ import pickle
 
 def is_spam(user_input):
     user_input = np.expand_dims(user_input, axis=0)
-    print(np.shape(user_input))
-    print("Running use_model.py")
     MODEL_PATH = "C:/Users/admin/Documents/Git_public/AI Hackathon/spam_ai/model/spam_ham_2.h5"
     model = models.load_model(MODEL_PATH)
-    print(np.expand_dims(user_input, axis=-1))
-    print(np.shape(user_input))
 
     with open("C:/Users/admin/Documents/Git_public/AI Hackathon/spam_ai/tokenizer.pickle", "rb") as handler:
         tokenizer = pickle.load(handler)
@@ -25,7 +21,6 @@ def is_spam(user_input):
         padding="post",
         truncating="post"
     )
-    print(f"shape of pad: {np.shape(pad)}")
 
     results = model.predict(
         x=pad,

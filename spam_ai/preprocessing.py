@@ -7,9 +7,10 @@ dm = DataModule(
 )
 
 user_input = int(input(
-    "1. reading_csv\n"
-    "2. preprocessing (reading_csv required)\n"
-    "3. "
+    "1. Reading_csv\n"
+    "2. Preprocessing (reading_csv required)\n"
+    "3. Checking ARC.npz\n"
+    "4. Checking APP.npz"
 ))
 
 if user_input == 1:
@@ -29,3 +30,16 @@ elif user_input == 3:
     for data in data_list:
         print(data)
         print(type(data))
+
+elif user_input == 4:
+    nploader = np.load("APP.npz")
+    new_label_list = nploader["label"]
+    data_list = nploader["data"]
+
+    for label in new_label_list:
+        print(label)
+        print(type(label))
+    for data in data_list:
+        print(data)
+        print(type(data))
+
