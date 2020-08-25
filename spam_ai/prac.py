@@ -1,6 +1,0 @@
-from spam_ai.use_model import is_spam
-
-
-result = is_spam("FreeMsg Hey there darling it's been 3 week's now and no word back! I'd like some fun you up for it still? Tb ok! XxX std chgs to send, �1.50 to rcv")
-
-print(result)
