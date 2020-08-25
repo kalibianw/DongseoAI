@@ -1,4 +1,4 @@
-from spam_aI_model.utils import DataModule
+from spam_ai.utils import DataModule
 import numpy as np
 
 

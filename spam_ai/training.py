@@ -2,7 +2,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
-from spam_aI_model.utils import TrainModule
+from spam_ai.utils import TrainModule
 
 
 nploader = np.load("APP.npz")
