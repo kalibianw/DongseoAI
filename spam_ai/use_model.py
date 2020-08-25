@@ -1,42 +1,41 @@
 from tensorflow.keras import models
-from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
-import sys
-import os
+import pickle
 
 
-os.system("cls")
+def is_spam(user_input):
+    user_input = np.expand_dims(user_input, axis=0)
+    print(np.shape(user_input))
+    print("Running use_model.py")
+    MODEL_PATH = "C:/Users/admin/Documents/Git_public/AI Hackathon/spam_ai/model/spam_ham_2.h5"
+    model = models.load_model(MODEL_PATH)
+    print(np.expand_dims(user_input, axis=-1))
+    print(np.shape(user_input))
 
-model = models.load_model("model/spam_ham_2.h5")
+    with open("C:/Users/admin/Documents/Git_public/AI Hackathon/spam_ai/tokenizer.pickle", "rb") as handler:
+        tokenizer = pickle.load(handler)
 
-user_input = sys.argv[1]
-print("----------------------------------------------------------------------")
-print(user_input)
-print("----------------------------------------------------------------------")
+    tokenizer.fit_on_texts(user_input)
+    seq = tokenizer.texts_to_sequences(user_input)
 
-tokenizer = Tokenizer(
-    num_words=1000,
-    oov_token="<OOV>"
-)
-tokenizer.fit_on_texts(user_input)
-seq = tokenizer.texts_to_sequences(user_input)
+    pad = pad_sequences(
+        seq,
+        maxlen=120,
+        padding="post",
+        truncating="post"
+    )
+    print(f"shape of pad: {np.shape(pad)}")
 
-pad = pad_sequences(
-    seq,
-    maxlen=120,
-    padding="post",
-    truncating="post"
-)
-print(f"shape of pad: {np.shape(pad)}")
+    results = model.predict(
+        x=pad,
+        verbose=1
+    )
+    print(np.argmax(results))
+    if np.argmax(results) == 0:
+        print("스팸이 아닙니다.")
+        return False
 
-
-result = model.predict(
-    x=pad,
-    verbose=1
-)
-
-print(result)
-print(f"shape of result: {np.shape(result)}")
-print(np.argmax(result))
-print(np.max(result))
+    elif np.argmax(results) == 1:
+        print("스팸입니다.")
+        return True

@@ -1,14 +1,6 @@
-from tensorflow.keras.utils import to_categorical
-import numpy as np
+from spam_ai.use_model import is_spam
 
 
-nploader = np.load("APP.npz")
+result = is_spam("FreeMsg Hey there darling it's been 3 week's now and no word back! I'd like some fun you up for it still? Tb ok! XxX std chgs to send, �1.50 to rcv")
 
-for key in nploader:
-    print(key)
-
-data_array, label_array = nploader["data"], nploader["label"]
-label_array = to_categorical(label_array)
-
-print(np.shape(data_array), np.shape(label_array))
-print(label_array)
+print(result)

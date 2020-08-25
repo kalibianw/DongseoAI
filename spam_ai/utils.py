@@ -60,12 +60,12 @@ class TrainModule:
             layers.BatchNormalization(),
             layers.Dense(32, activation=activations.relu),
             layers.Dropout(rate=0.5),
-            layers.Dense(1, activation=activations.sigmoid)
+            layers.Dense(2, activation=activations.softmax)
         ])
 
         self.model.compile(
             optimizer=optimizers.Adam(),
-            loss=losses.binary_crossentropy,
+            loss=losses.categorical_crossentropy,
             metrics=["acc"]
         )
 
@@ -73,10 +73,10 @@ class TrainModule:
 
     def TrainModel(self, model, x_data, y_data):
         fhandler = open(f"{self.result_name}.txt", 'w')
-        x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.1, shuffle=True)
+        x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.1)
         print(np.shape(x_train), np.shape(x_test), np.shape(y_train), np.shape(y_test))
 
-        kf = KFold(shuffle=True)
+        kf = KFold()
         fold_no = 1
         valid_acc = list()
         valid_loss = list()

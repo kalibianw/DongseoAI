@@ -1,13 +1,18 @@
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.utils import to_categorical
 import numpy as np
+import pickle
 
 from spam_ai.utils import TrainModule
 
 
 nploader = np.load("APP.npz")
 data = nploader["data"]
+print(data[9:11])
 label = nploader["label"]
+label = to_categorical(label)
+print(label)
 
 vocab_size = 1000
 embedding_dim = 64
@@ -28,6 +33,11 @@ tm = TrainModule(
 
 tokenizer = Tokenizer(num_words=vocab_size, oov_token=oov_tok)
 tokenizer.fit_on_texts(data)
+
+# Saving tokenizer
+with open("tokenizer.pickle", "wb") as handler:
+    pickle.dump(tokenizer, handler, protocol=pickle.HIGHEST_PROTOCOL)
+
 seq = tokenizer.texts_to_sequences(data)
 # print(seq)
 # print(np.shape(seq))
@@ -38,16 +48,15 @@ pad = pad_sequences(
     padding=padding_type,
     truncating=trunc_type
 )
+np.savez_compressed("test_.npz", pad=pad)
 # print(pad)
 # print(np.shape(pad))
 
 model = tm.BuildModel()
 model.summary()
 
-tm.TrainModel(
-    model,
-    x_data=pad,
-    y_data=label
-)
-
-nploader = np.load("APP.npz")
+# tm.TrainModel(
+#     model,
+#     x_data=pad,
+#     y_data=label
+# )
