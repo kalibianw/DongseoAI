@@ -1,6 +1,3 @@
-# DongseoAI
-## Univ. Dongseo AI Hackathon spam filtering team (Team name: CDN) repository
-
 #### 1. Dataset source
 https://www.kaggle.com/uciml/sms-spam-collection-dataset
 - - -
